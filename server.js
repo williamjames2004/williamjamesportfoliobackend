@@ -1,23 +1,15 @@
 const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
+const cors    = require("cors");
+const dotenv  = require("dotenv");
 
 const connectDB = require("./config/db");
 
-const projectRoutes =
-    require("./routes/projectRoutes");
-
-const certificationRoutes =
-    require("./routes/certificationRoutes");
-
-const achievementRoutes =
-    require("./routes/achievementRoutes");
-
-const jobInquiryRoutes =
-    require("./routes/jobInquiryRoutes");
-
-const projectInquiryRoutes =
-    require("./routes/projectInquiryRoutes");
+const projectRoutes        = require("./routes/projectRoutes");
+const certificationRoutes  = require("./routes/certificationRoutes");
+const achievementRoutes    = require("./routes/achievementRoutes");
+const jobInquiryRoutes     = require("./routes/jobInquiryRoutes");
+const projectInquiryRoutes = require("./routes/projectInquiryRoutes");
+const adminRoutes          = require("./routes/adminRoutes");
 
 dotenv.config();
 
@@ -35,38 +27,14 @@ app.get("/active", (req, res) => {
     });
 });
 
-/* Projects */
-app.use(
-    "/projects",
-    projectRoutes
-);
+app.use("/projects", projectRoutes);
+app.use("/certifications", certificationRoutes);
+app.use("/achievements", achievementRoutes);
+app.use("/api/job-inquiries", jobInquiryRoutes);
+app.use("/api/project-inquiries", projectInquiryRoutes);
+app.use("/api/admin", adminRoutes);
 
-/* Certifications */
-app.use(
-    "/certifications",
-    certificationRoutes
-);
-
-/* Achievements */
-app.use(
-    "/achievements",
-    achievementRoutes
-);
-app.use(
-    "/api/job-inquiries",
-    jobInquiryRoutes
-);
-
-app.use(
-    "/api/project-inquiries",
-    projectInquiryRoutes
-);
-
-const PORT =
-    process.env.PORT || 5000;
-
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(
-        `Server running on port ${PORT}`
-    );
+    console.log(`Server running on port ${PORT}`);
 });
