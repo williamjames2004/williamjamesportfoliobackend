@@ -7,8 +7,8 @@ const {
 
 const router = express.Router();
 
-router.post("/", createAchievement);
+router.post("/admin/addachievement", createAchievement);
 
-router.get("/", getAchievements);
+router.get("/getachievements", getAchievements);
 
 module.exports = router;

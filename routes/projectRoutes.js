@@ -10,7 +10,7 @@ const router = express.Router();
 
 /* ==================== PROJECT ROUTES ==================== */
 
-router.post("/addproject", createProject);
+router.post("/admin/addproject", createProject);
 
 router.get("/getprojects", getProjects);
 

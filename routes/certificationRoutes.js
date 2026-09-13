@@ -7,8 +7,8 @@ const {
 
 const router = express.Router();
 
-router.post("/", createCertification);
+router.post("/admin/addcertification", createCertification);
 
-router.get("/", getCertifications);
+router.get("/getcertifications", getCertifications);
 
 module.exports = router;
