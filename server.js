@@ -13,6 +13,12 @@ const certificationRoutes =
 const achievementRoutes =
     require("./routes/achievementRoutes");
 
+const jobInquiryRoutes =
+    require("./routes/jobInquiryRoutes");
+
+const projectInquiryRoutes =
+    require("./routes/projectInquiryRoutes");
+
 dotenv.config();
 
 const app = express();
@@ -45,6 +51,15 @@ app.use(
 app.use(
     "/achievements",
     achievementRoutes
+);
+app.use(
+    "/api/job-inquiries",
+    jobInquiryRoutes
+);
+
+app.use(
+    "/api/project-inquiries",
+    projectInquiryRoutes
 );
 
 const PORT =
