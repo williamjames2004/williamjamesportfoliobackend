@@ -1,18 +1,28 @@
 const express = require("express");
-const cors    = require("cors");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const projectRoutes = require("./routes/projectRoutes");
 
-const app = express()
-app.use(express.json())
-app.use(cors())
+dotenv.config();
+const app = express();
 
-app.get("/", (req,res)=>{
-    try{
-        return res.status(200).json({success: true});
-    } catch(e){
-        console.log(e.message);
-        return res.status(500).json({success: false});
-    }
-})
+connectDB();
 
-const PORT = 5000;
-app.listen(PORT, ()=>{console.log(`App is running on port ${PORT}`)});
+app.use(cors());
+app.use(express.json());
+
+app.get("/active", (req, res) => {
+
+    res.status(200).json({
+        success: true
+    });
+
+});
+
+app.use("/admin", projectRoutes);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
